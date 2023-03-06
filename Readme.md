@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Aleksandr Bushuev](https://up.htmlacademy.ru/javascript/28/user/887867).
-* Наставник: `Неизвестно`.
+* Наставник: [Артем Макаров](https://htmlacademy.ru/profile/deepsick).
 
 ---
 
