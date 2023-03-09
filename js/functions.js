@@ -1,6 +1,7 @@
 const isLessOrEqual = (string, length) => string.length <= length;
 
-console.log(isLessOrEqual('проверяемая строка', 20))
+isLessOrEqual('проверяемая строка', 20);
+// console.log(isLessOrEqual('проверяемая строка', 20));
 
 const checksPalindrome = (string) => {
   const tempString = string
@@ -10,7 +11,7 @@ const checksPalindrome = (string) => {
   for (let i = tempString.length - 1; i >= 0; i--) {
     reverseString += tempString.at(i);
   }
-  console.log(reverseString);
+  // console.log(reverseString);
   return tempString === reverseString;
 };
 
@@ -27,8 +28,9 @@ const extractNumber = (string) => {
   return parseInt(result, 10);
 };
 
+
 extractNumber('2023 год');
-console.log(extractNumber('2023 год'));
+// console.log(extractNumber('2023 год'));
 
 const myPadStart = (string, minLenght, pad) => {
   const actualPad = minLenght - string.length;
@@ -40,4 +42,4 @@ const myPadStart = (string, minLenght, pad) => {
 };
 
 myPadStart('qwerty', 4, '0');
-console.log(myPadStart('q', 4, 'werty'));
+// console.log(myPadStart('q', 4, 'werty'));
