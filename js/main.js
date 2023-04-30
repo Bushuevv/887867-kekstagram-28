@@ -1,7 +1,6 @@
 const PICTURE_COUNT = 25;
-const AVATAR_COUNT = 6;
-const LIKE_MIN_COUNT = 15;
-const LIKE_MAX_COUNT = 200;
+const AVATARS_COUNT = 6;
+const LIKE_COUNT = { MIN: 15, MAX: 200, };
 const COMMENT_COUNT = 20;
 const COMMENT_LINES = [
   'Всё отлично!',
@@ -11,7 +10,25 @@ const COMMENT_LINES = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают.Как можно было поймать такой неудачный момент ?!',
 ];
-const DESCRIPTIONS = [];
+
+const DESCRIPTIONS = [
+  'Я, снова я и опять я',
+  'Просто я',
+  'Но сначала селфи!',
+  'Типичный я',
+  'Остаюсь верен традициям – воскресное селфи',
+  'Рождена, чтобы блистать',
+  'Я делаю себяшку',
+  'Я не часто снимаю селфи, но когда доходят руки…',
+  'Как вам мой лук?',
+  'Да, я такая и проснулась',
+  'Разве можно быть счастливее?',
+  'Я не одна на миллион, я одна из 7 миллиардов',
+  'Не идеальная, но уникальная.',
+  'Мыслями на пляже.',
+  'Жизнь слишком коротка для плохого настроения.',
+];
+
 const NAMES = [
   'Иван',
   'Хуан Себастьян',
@@ -23,15 +40,15 @@ const NAMES = [
   'Вашингтон',
 ];
 
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
+const getRandomInteger = (min, max) => {
+  const lower = Math.ceil(Math.min(min, max));
+  const upper = Math.floor(Math.max(min, max));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
 
-const getRandomArrayElement = (array) =>
-  array[getRandomInteger(0, array.length - 1)];
+const getRandomArrayElement = (items) =>
+  items[getRandomInteger(0, items.length - 1)];
 
 const createIdGenerator = () => {
   let lastGeneratedId = 0;
@@ -51,27 +68,25 @@ const createMessage = () =>
 
 const createComment = () => ({
   id: generateCommentId(),
-  avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(1, AVATARS_COUNT)}.svg`,
   massage: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
 
-const createPicture = (index) => ({
-  id: index,
-  url: `photos/${index}.jpg`,
+const createPicture = (id) => ({
+  id: id,
+  url: `photos/${id}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomInteger(LIKE_MIN_COUNT, LIKE_MAX_COUNT),
+  likes: getRandomInteger(LIKE_COUNT.MIN, LIKE_COUNT.MAX),
   comment: Array.from(
     { length: getRandomInteger(0, COMMENT_COUNT) },
     createComment
   ),
 });
 
-const getPicture = () =>
-  Array.from({ length: PICTURE_COUNT }, (_, pictureIndex) =>
-    createPicture(pictureIndex + 1)
+const getPictures = () =>
+  Array.from({ length: PICTURE_COUNT }, (_, picturesIndex) =>
+    createPicture(picturesIndex + 1)
   );
 
-getPicture();
-
-
+getPictures();
