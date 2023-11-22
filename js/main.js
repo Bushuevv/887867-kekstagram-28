@@ -1,4 +1,4 @@
-import './util.js';
+import {renderMiniatures} from './miniatures.js';
 import {getPictures} from './data.js';
-getPictures();
-console.log(getPictures());
+
+renderMiniatures(getPictures());
